@@ -10,14 +10,14 @@ for i in range(n):
 throw = int(input())
 heights = [i for i in map(int, input().split())]
 
-def	path():
+def path():
     Visited = [[True for _ in range(m)] for _ in range(n)]
     for i in range(n):
         for j in range(m):
             if not Board[i][j]: Visited[i][j] = False
     return Visited
 
-def	dfs(i, j):
+def dfs(i, j):
     global Chunk
     dx, dy = (-1, 1, 0, 0), (0, 0, -1, 1)
     Chunk.append([i, j])
