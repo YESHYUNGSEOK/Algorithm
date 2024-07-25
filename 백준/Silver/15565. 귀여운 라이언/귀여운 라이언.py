@@ -1,23 +1,24 @@
+from collections import deque
+
 N, K = map(int, input().split())
 arr = list(map(int, input().split()))
 
 answer = int(1e8)
+p1, p2, = 0, 0
+q = deque()
 count = 0
-p1, p2 = 0, 0
 
 while p2 < N:
     if arr[p2] == 1:
+        q.append(p2)
         count += 1
 
-    while count > K:
-        if arr[p1] == 1:
-            count -= 1
-        p1 += 1
+    if count > K: 
+        p1 = q.popleft()
+        count -= 1
     
     if count == K:
-        while arr[p1] != 1:
-              p1 += 1
-        answer = min(answer, p2 - p1 + 1)
+        answer = min(answer, p2 - q[0] + 1)
 
     p2 += 1
 
